@@ -1,9 +1,9 @@
-name                      : E-shop
-version                   : 11.0.0
-author                    : Peter Širka
+name                      : S-pass Telecom
+version                   : 9.0.0
+author                    : Louis Bertson
 
 // Hidden super admin in the form username:password
-admin-superadmin          : admin:admin
+admin-superadmin          : spass:spass123456
 admin-cookie              : __admin
 
 // Enables real-time visitor tracking
@@ -11,7 +11,7 @@ admin-tracking            : true
 
 // Image convertor for resizing of pictures
 // Default image converter: im = ImageMagick, gm = GraphicsMagick
-default_image_converter   : gm
+default_image_converter   : im
 
 // Default theme
 default_theme             : default
