@@ -1,0 +1,151 @@
+@{repository.loading = true}
+<div class="row">
+	<div class="col-lg-5 col-md-4">
+		<div class="content">
+
+			<div class="contentbody bg-yellow" data-jc="enter" data-jc-path="account.signin" data-jc-config="exec:signinsubmit" data-b="account.type" data-b-visible="value === 'signin'">
+				<h2>@(Connexion)</h2>
+				<div data-jc="textbox" data-jc-path="account.signin.email" data-jc-config="required:true;maxlength:120;type:email" data-jc-value="'@'" class="m">@(Adresse e-mail)</div>
+				<div data-jc="textbox" data-jc-path="account.signin.password" data-jc-config="required:true;maxlength:40;type:password" class="m">@(Mot de passe)</div>
+				<a href="javascript:void(0)" class="fs12 exec link m" data-exec="switchpassword"><i class="fa fa-chevron-right"></i>@(Mot de passe oublié)</a>
+				<div data-jc="error" data-jc-path="account.signin.response"></div>
+				<div data-jc="validation" data-jc-path="account.signin">
+					<button class="button b exec" data-exec="signinsubmit" name="submit" disabled="disabled">@(Connexion)</button>
+				</div>
+			</div>
+
+			<div class="contentbody hidden" data-jc="enter" data-jc-path="account.password" data-jc-config="exec:passwordsubmit" data-b="account.type" data-b-visible="value === 'password'">
+				<h2>@(Récupération de mot de passe)</h2>
+				<div data-jc="textbox" data-jc-path="account.password.email" data-jc-config="required:true;maxlength:120;type:email" data-jc-value="'@'" class="m">@(Adresse e-mail)</div>
+				<a href="javascript:void(0)" class="fs12 exec link m" data-exec="switchpassword"><i class="fa fa-chevron-left"></i>@(Retourner vers la connexion)</a>
+				<div data-jc="error" data-jc-path="account.password.response"></div>
+				<div data-jc="validation" data-jc-path="account.password">
+					<button class="button b exec" data-exec="passwordsubmit" name="submit" disabled="disabled">@(Réinitialiser)</button>
+				</div>
+			</div>
+
+		</div>
+	</div>
+	<div class="col-lg-7 col-md-8">
+		<div class="content">
+			<div class="contentbody">
+				<h2>@(Inscription)</h2>
+				<div class="caption2 nmb"><i class="fa fa-user"></i>@(Informations personnelles)</div>
+				<br />
+				<div class="row">
+					<div class="col-md-4 m">
+						<div data-jc="dropdown" data-jc-path="account.signup.gender" data-jc-config="items:,@(Homme)|male,@(Femme)|female;required:true">@(Genre)</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-6 m">
+						<div data-jc="textbox" data-jc-path="account.signup.firstname" data-jc-config="required:true;maxlength:40">@(Nom de famille)</div>
+					</div>
+					<div class="col-md-6 m">
+						<div data-jc="textbox" data-jc-path="account.signup.lastname" data-jc-config="required:true;maxlength:40">@(Prénom)</div>
+					</div>
+				</div>
+				<br />
+				<div class="caption2 nmb"><i class="fa fa-user"></i>@(Informations de contact)</div>
+				<br />
+				<div class="row">
+					<div class="col-md-6 m">
+						<div data-jc="textbox" data-jc-path="account.signup.email" data-jc-config="required:true;maxlength:120;type:email" data-jc-value="'@'">@(Adresse e-mail)</div>
+						<div class="help">@(Sera utilisé comme nom de connexion.)</div>
+					</div>
+					<div class="col-md-6 m">
+						<div data-jc="textbox" data-jc-path="account.signup.phone" data-jc-config="maxlength:30;type:phone;placeholder:@(ex:22656920671)">@(Téléphone)</div>
+					</div>
+				</div>
+			</div>
+			<hr class="nmt nmb" />
+			<div class="contentbody">
+				<div class="row mt10">
+					<div class="col-md-6 m">
+						<div data-jc="textbox" data-jc-path="account.signup.password" data-jc-config="required:true;maxlength:30;type:password">@(Mot de passe)</div>
+					</div>
+					<div class="col-md-6 m">
+						<div data-jc="textbox" data-jc-path="account.signup.passwordreply" data-jc-config="required:true;maxlength:30;type:password">@(Confirmation)</div>
+					</div>
+				</div>
+			</div>
+			<hr class="nmt nmb" />
+			<div class="contentbody">
+				<div data-jc="checkbox" data-jc-path="account.signup.isterms" class="b red m">@(J'accepte les termes et les conditions)</div>
+				<div data-jc="error" data-jc-path="account.signup.response"></div>
+				<div data-jc="validation" data-jc-path="account.signup">
+					<button class="button b exec" data-exec="signupsubmit" name="submit" disabled="disabled">@(S'inscrire)</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+
+	var account = {};
+
+	account.type = 'signin';
+
+	SETTER(true, 'loading', 'hide', 500);
+
+	function signupsubmit() {
+
+		if (BLOCKED('account', 3000))
+			return;
+
+		SETTER('loading', 'show');
+		AJAX('POST /api/account/create/', account.signup, function(response) {
+
+			SETTER('loading', 'hide', 1000);
+
+			if (response.success)
+				location.reload(true);
+			else {
+				RESET('account.signup.*', true);
+				SET('account.signup.response', response);
+			}
+		});
+	}
+
+	function signinsubmit() {
+
+		if (BLOCKED('account', 3000))
+			return;
+
+		SETTER('loading', 'show');
+		AJAX('POST /api/account/login/', account.signin, function(response) {
+
+			SETTER('loading', 'hide', 1000);
+
+			if (response.success)
+				location.reload(true);
+			else {
+				RESET('account.sigin.*', true);
+				SET('account.sigin.response', response);
+			}
+		});
+	}
+
+	function passwordsubmit() {
+
+		if (BLOCKED('account', 3000))
+			return;
+
+		SETTER('loading', 'show');
+		AJAX('POST /api/account/password/', account.password, function(response) {
+			SETTER('loading', 'hide', 1000);
+			if (response.success)
+				SETTER('message', 'success', '@(Nous vous avons envoyé un email contenant les intructions de réinitialisation de votre mot de passe.)');
+			else {
+				RESET('account.password.*', true);
+				SET('account.password.response', response);
+			}
+		});
+	}
+
+	function switchpassword() {
+		SET('account.type', account.type === 'password' ? 'signin' : 'password');
+	}
+
+</script>

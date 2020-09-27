@@ -1,0 +1,63 @@
+<div data-jc="form" data-jc-path="common.form" class="hidden" data-jc-config="icon:user;if:settings-admin;title:@(Administrateur);width:500;submit:Settings/userSave;autofocus:true" data-jc-controller="Settings">
+	<div class="padding npb">
+		<div class="row">
+			<div class="col-md-12 m">
+				<div data-jc="textbox" data-jc-path="settings.formuser.name" data-jc-config="placeholder:@(Nom et Prénom);required:true">@(Nom d'utilisateur)</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12 m">
+				<div data-jc="textbox" data-jc-path="settings.formuser.login" data-jc-config="required:true;placeholder:@(ex: agaperaston)">@(Nom de connexion)</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12 m">
+				<div data-jc="textbox" data-jc-path="settings.formuser.password" data-jc-config="required:true">@(Mot de passe)</div>
+				<div class="help"><a href="javascript:void(0)" class="exec" data-exec="Settings/userPassword">@(Générer mot de passe)</a></div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12 m">
+				<div data-jc="dropdowncheckbox" data-jc-path="settings.formuser.roles" data-jc-config="items:[roles]">@(Rôles)</div>
+				<div class="help">@(Si les rôles de l'utilisateur est vide alors il aura accès à toutes les fonctionalités.)</div>
+			</div>
+		</div>
+	</div>
+	<div class="ui-form-buttons center" data-jc="validation" data-jc-path="settings.formuser">
+		<button name="cancel">@(Annuler)</button>
+		<button name="submit">@(SAUVEGARDER)</button>
+	</div>
+</div>
+
+<script>
+
+	SCOPE('Settings', function(ctrl) {
+
+		ctrl.userPassword = function() {
+			SET('settings.formuser.password', GUID(10));
+		};
+
+		ctrl.userSave = function(com) {
+
+			com.hide();
+
+			var frm = settings.formuser;
+
+			if (frm.id) {
+				var user = settings.form.users.findItem('id', frm.id);
+				user.name = frm.name;
+				user.login = frm.login;
+				user.password = frm.password;
+				user.roles = frm.roles;
+				ctrl.update('form.users');
+			} else {
+				frm.id = GUID(15);
+				ctrl.push('form.users', frm);
+			}
+
+			// Performs change for validation
+			ctrl.change('form.url', true);
+		};
+	});
+
+</script>

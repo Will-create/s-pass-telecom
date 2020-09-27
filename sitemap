@@ -1,0 +1,20 @@
+// Common
+homepage          : @(Accueil)            --> /
+posts             : @(Blog)                --> @(/blog/)                 --> homepage
+post              : @(Post)                --> @(/blog/{0}/)             --> posts
+notices           : @(Avis)             --> @(/avis/)              --> homepage
+
+// Admin area
+admin             : @(Admin)               --> @(/admin/*)
+
+// Eshop
+checkout          : @(Validation)            --> @(/validation/)            --> homepage
+category          : @(Tous les produits)        --> @(/categories/*)         --> homepage
+detail            : @(Details produit)      --> @(/detail/{0}/)          --> category
+top               : @(Produits TOP)        --> @(/top/)                 --> homepage
+new               : @(Nouveau produits)        --> @(/nouveau/)                 --> homepage
+popular           : @(Produits populaires)    --> @(/populaire/)             --> homepage
+account           : @(Mon Compte)          --> @(/Compte/)             --> homepage
+order             : @(Details commandes)        --> @(/validation/{0}/)        --> account
+settings          : @(Paramètres de compte)    --> @(/compte/paramètres/)    --> account
+logoff            : @(Déconnexion)              --> @(/déconnexion/)              --> homepage

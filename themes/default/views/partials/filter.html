@@ -1,0 +1,56 @@
+<div class="row">
+	<div class="col-md-3 col-sm-6 m">
+		<div data-jc="clickbox" class="ui-clickbox" data-jc-config="param:manufacturer">
+			<a href="@{href('manufacturer', '', 'page')}">@(Tous les Fabricants)</a>
+			@{if repository.category}
+				@{foreach m in repository.category.manufacturers}
+					@{if m.count}
+					<a href="@{href('manufacturer', m.linker, 'page')}">@{m.name}</a>
+					@{fi}
+				@{end}
+			@{else}
+				@{foreach m in global.manufacturers}
+					@{if m.count}
+					<a href="@{href('manufacturer', m.linker, 'page')}">@{m.name}</a>
+					@{fi}
+				@{end}
+			@{fi}
+		</div>
+	</div>
+	<div class="col-md-3 col-sm-6 m">
+		<div data-jc="clickbox" class="ui-clickbox" data-jc-config="param:size">
+			<a href="@{href('size', '', 'page')}">@(Toutes les tailles)</a>
+			@{if repository.category}
+				@{foreach m in repository.category.sizes}
+					<a href="@{href('size', m, 'page')}">@(Taille:) @{m}</a>
+				@{end}
+			@{else}
+				@{foreach m in global.sizes}
+					<a href="@{href('size', m, 'page')}">@(Taille:) @{m}</a>
+				@{end}
+			@{fi}
+		</div>
+	</div>
+	<div class="col-md-3 col-sm-6 m">
+		<div data-jc="clickbox" class="ui-clickbox" data-jc-config="param:color">
+			<a href="@{href('color', '', 'page')}">@(Toutes les couleurs)</a>
+			@{if repository.category}
+				@{foreach m in repository.category.colors}
+					<a href="@{href('color', m, 'page')}">@(Couleur:) @{m}</a>
+				@{end}
+			@{else}
+				@{foreach m in global.colors}
+					<a href="@{href('color', m, 'page')}">@(Couleur:) @{m}</a>
+				@{end}
+			@{fi}
+		</div>
+	</div>
+	<div class="col-md-3 col-sm-6 m">
+		<div data-jc="clickbox" class="ui-clickbox" data-jc-config="param:sort">
+			<a href="@{href('sort', '')}">@(Nouveaux)</a>
+			<a href="@{href('sort', 'pricemin_asc')}">@(Prix bas)</a>
+			<a href="@{href('sort', 'pricemin_desc')}">@(Prix Haut)</a>
+		</div>
+	</div>
+</div>
+<br />

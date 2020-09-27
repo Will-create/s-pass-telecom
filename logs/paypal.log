@@ -1,0 +1,48 @@
+2020-08-27 09:24:18 | 300144001eg61b Error: ACK Failure: You do not have permissions to make this API call
+    at /home/louisbertson/Desktop/totalJS/eshop-master/node_modules/paypal-express-checkout/index.js:138:13
+    at IncomingMessage.<anonymous> (/home/louisbertson/Desktop/totalJS/eshop-master/node_modules/paypal-express-checkout/index.js:176:4)
+    at IncomingMessage.emit (events.js:203:15)
+    at endReadableNT (_stream_readable.js:1145:12)
+    at process._tickCallback (internal/process/next_tick.js:63:19)
+2020-08-27 09:26:55 | 300144001eg61b Error: ACK Failure: You do not have permissions to make this API call
+    at /home/louisbertson/Desktop/totalJS/eshop-master/node_modules/paypal-express-checkout/index.js:138:13
+    at IncomingMessage.<anonymous> (/home/louisbertson/Desktop/totalJS/eshop-master/node_modules/paypal-express-checkout/index.js:176:4)
+    at IncomingMessage.emit (events.js:203:15)
+    at endReadableNT (_stream_readable.js:1145:12)
+    at process._tickCallback (internal/process/next_tick.js:63:19)
+2020-08-27 09:29:01 | 300144001eg61b Error: ACK Failure: Security header is not valid
+    at /home/louisbertson/Desktop/totalJS/eshop-master/node_modules/paypal-express-checkout/index.js:138:13
+    at IncomingMessage.<anonymous> (/home/louisbertson/Desktop/totalJS/eshop-master/node_modules/paypal-express-checkout/index.js:176:4)
+    at IncomingMessage.emit (events.js:203:15)
+    at endReadableNT (_stream_readable.js:1145:12)
+    at process._tickCallback (internal/process/next_tick.js:63:19)
+2020-08-27 09:29:03 | 300144001eg61b Error: ACK Failure: Security header is not valid
+    at /home/louisbertson/Desktop/totalJS/eshop-master/node_modules/paypal-express-checkout/index.js:138:13
+    at IncomingMessage.<anonymous> (/home/louisbertson/Desktop/totalJS/eshop-master/node_modules/paypal-express-checkout/index.js:176:4)
+    at IncomingMessage.emit (events.js:203:15)
+    at endReadableNT (_stream_readable.js:1145:12)
+    at process._tickCallback (internal/process/next_tick.js:63:19)
+2020-08-27 09:30:35 | 300144001eg61b Error: ACK Failure: Security header is not valid
+    at /home/louisbertson/Desktop/totalJS/eshop-master/node_modules/paypal-express-checkout/index.js:138:13
+    at IncomingMessage.<anonymous> (/home/louisbertson/Desktop/totalJS/eshop-master/node_modules/paypal-express-checkout/index.js:176:4)
+    at IncomingMessage.emit (events.js:203:15)
+    at endReadableNT (_stream_readable.js:1145:12)
+    at process._tickCallback (internal/process/next_tick.js:63:19)
+2020-08-27 09:30:37 | 300144001eg61b Error: ACK Failure: Security header is not valid
+    at /home/louisbertson/Desktop/totalJS/eshop-master/node_modules/paypal-express-checkout/index.js:138:13
+    at IncomingMessage.<anonymous> (/home/louisbertson/Desktop/totalJS/eshop-master/node_modules/paypal-express-checkout/index.js:176:4)
+    at IncomingMessage.emit (events.js:203:15)
+    at endReadableNT (_stream_readable.js:1145:12)
+    at process._tickCallback (internal/process/next_tick.js:63:19)
+2020-08-27 09:31:25 | 300144001eg61b Error: ACK Failure: Security header is not valid
+    at /home/louisbertson/Desktop/totalJS/eshop-master/node_modules/paypal-express-checkout/index.js:138:13
+    at IncomingMessage.<anonymous> (/home/louisbertson/Desktop/totalJS/eshop-master/node_modules/paypal-express-checkout/index.js:176:4)
+    at IncomingMessage.emit (events.js:203:15)
+    at endReadableNT (_stream_readable.js:1145:12)
+    at process._tickCallback (internal/process/next_tick.js:63:19)
+2020-09-25 22:40:37 | 342699001gu61b Error: ACK Failure: Security header is not valid
+    at /home/louisbertson/Desktop/bureau/totalJS/eshop-master/node_modules/paypal-express-checkout/index.js:138:13
+    at IncomingMessage.<anonymous> (/home/louisbertson/Desktop/bureau/totalJS/eshop-master/node_modules/paypal-express-checkout/index.js:176:4)
+    at IncomingMessage.emit (events.js:203:15)
+    at endReadableNT (_stream_readable.js:1145:12)
+    at process._tickCallback (internal/process/next_tick.js:63:19)

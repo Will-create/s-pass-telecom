@@ -1,0 +1,51 @@
+<div data-jc="form" data-jc-path="common.form" class="hidden" data-jc-config="icon:clone;if:pages-globals;title:@(Editer les variables globales);width:800;reload:pagesglobals_reload;submit:pagesglobals_submit">
+	<div class="padding">
+		<p>@(Les variables globales peuvent contenir des valeurs prédéfinies pour le contenu de la page. En d'autres termes: Vous pouvez définir des clés avec le contenu et les utiliser dans les différentes pages.)</p>
+		<div class="help">@(Le système remplace <code>$clé</code> par une valeur dans toutes les pages où elles sont rendues.)</div>
+	</div>
+	<div class="padding bg-yellow">
+		<div data-jc="codemirror" data-jc-path="pages.formglobals.body" data-jc-config="height:300;icon:keyboard-o;type:totaljsresources;tabs:true;trim:true">@(Variables globales)</div>
+		<div class="row fs12 mt10">
+			<div class="col-xs-6">
+				<a href="javascript:void(0)" class="exec" data-exec="pagesglobals_upload"><i class="fa fa-folder-o mr5"></i>@(Parcourir fichiers)</a>
+			</div>
+		</div>
+	</div>
+	<div data-jc="error" data-jc-path="pages.formglobals.response"></div>
+	<div class="ui-form-buttons" data-jc="validation" data-jc-path="pages.formglobals">
+		<button name="cancel">@(Annuler)</button>
+		<button name="submit">@(SAUVEGARDER)</button>
+	</div>
+</div>
+
+<script>
+
+	function pagesglobals_reload() {
+		AJAX('GET [url]api/pagesglobals/', function(response) {
+
+			if (!response.body)
+				response.body = '@(cléA)      : @(valeur)\n@(cléB)      : @(valeur)';
+
+			SET('pages.formglobals', response, true);
+			SETTER('loading', 'hide', 1000);
+		});
+	}
+
+	function pagesglobals_upload() {
+		refresh_filebrowser(function(file) {
+			SETTER('.pages.formglobals.body', 'insert', file);
+		});
+	}
+
+	function pagesglobals_submit() {
+		SETTER('loading', 'show');
+		AJAX('POST [url]api/pagesglobals/', GET('pages.formglobals'), function(response) {
+			SETTER('loading', 'hide', 1000);
+			if (response.success) {
+				SETTER('snackbar', 'success', '@(Les Globals ont été enrégistrés avec succès.)');
+				SET('common.form', '');
+			}
+		});
+	}
+
+</script>

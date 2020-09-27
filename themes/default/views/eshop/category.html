@@ -1,0 +1,10 @@
+<h1>@{title}</h1>
+
+@{view('~/partials/filter')}
+@{if model.count}
+	@{view('~/partials/products', model)}
+@{else}
+	<br />
+	<div class="empty"><i class="fa fa-search"></i>@(Aucun produit en base de données.)</div>
+@{fi}
+@{view('~/partials/pagination', model)}

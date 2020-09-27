@@ -1,0 +1,212 @@
+<h1>@{title}</h1>
+
+<div class="row">
+	<div class="col-md-6">
+		<div class="content">
+
+			@{if query.paid === '0'}
+			<div class="contentwarning">
+				<i class="fa fa-warning"></i>@(Nous n'avons pas recu de paiement. <b>Essayer à nouveau le paiement</b>.)
+			</div>
+			@{fi}
+
+			@{if query.paid === '1'}
+			<div class="contentsuccess">
+				<i class="fa fa-check-circle"></i>@(<b>Merci beaucoup</b>, votre commande a été payé.)
+			</div>
+			@{fi}
+
+			@{if model.isfinished}
+			<div class="contentsuccess">
+				<i class="fa fa-check-circle"></i>@(Terminé)
+			</div>
+			@{fi}
+			
+
+			<div class="contentbody">
+				<div class="help nmb"><i class="fa fa-clock-o"></i>@(Statut de commande:)</div>
+				<div class="b red">@{model.status}</div>
+			</div>
+
+			@{if model.statushistory && model.statushistory.length > 1}
+				<div class="order-historystatus">
+				@{foreach m in model.statushistory.reverse()}
+					<div><i class="fa fa-clock-o"></i><b>@{m.date.format('@(yyyy-MM-dd HH:mm)')}</b> - @{m.status}</div>
+				@{end}
+				</div>
+			@{fi}
+
+			@{if model.message}
+			<div class="contentbody bg-yellow">
+				<div class="help mb10"><i class="fa fa-warning"></i>@(Un message pour vous)</div>
+				<div class="b">@{model.message.replace(/\n/g, '<br />')}</div>
+			</div>
+			@{fi}
+
+			<hr class="nmt nmb" />
+
+			<div class="contentbody">
+				<div class="keyvalue">
+					<div class="key">@(Client)</div>
+					<div class="value">@{model.firstname} @{model.lastname}</div>
+				</div>
+
+				@{if model.iscompany}
+				<div class="keyvalue">
+					<div class="key">@(Entreprise)</div>
+					<div class="value">@{model.company}</div>
+					<div class="value silver fs12" style="margin-top:5px">@{model.companyid}<br />@{model.companyvat}</div>
+				</div>
+				@{fi}
+
+				<div class="keyvalue">
+					<div class="key">@(Adresse E-mail)</div>
+					<div class="value">@{model.email}</div>
+				</div>
+
+				<div class="keyvalue">
+					<div class="key">@(Téléphone)</div>
+					<div class="value">@{model.phone}</div>
+				</div>
+
+				@{if model.note}
+				<div class="keyvalue">
+					<div class="key">@(Note)</div>
+					<div class="value">@{model.note}</div>
+				</div>
+				@{fi}
+
+				@{if !model.isfinished && !model.ispaid}
+					<br />
+					<div><button class="button b exec" name="paypal" data-exec="pay"><i class="fa fa-paypal"></i>@(Payer maintenant)</button></div>
+					<div class="help">@(Vous allez être redirigé vers page <b>PayPal</b> de paiement sécurisé.)</div>
+				@{fi}
+
+			</div>
+		</div>
+		<br />
+		<div style="padding:10px">
+			<div class="row">
+				<div class="col-md-6 m">
+					<div class="keyvalue">
+						<div class="key">@(Numéro)</div>
+						<div class="value">@{model.number}</div>
+					</div>
+				</div>
+				@{if model.ispaid}
+				<div class="col-md-6 m">
+					<div class="keyvalue">
+						<div class="key">@(Payé)</div>
+						<div class="value green"><i class="fa fa-check-circle"></i>@{model.datepaid.format('yyyy-MM-dd HH:mm')}</div>
+					</div>
+				</div>
+				@{fi}
+				<div class="col-md-6 m">
+					<div class="keyvalue">
+						<div class="key">@(Date_créa)</div>
+						<div class="value">@{model.datecreated.format('yyyy-MM-dd HH:mm')}</div>
+					</div>
+				</div>
+				<div class="col-md-6 m">
+					<div class="keyvalue">
+						<div class="key">@(Prix)</div>
+						<div class="value">@{!model.price.currency()}</div>
+					</div>
+				</div>
+				<div class="col-md-6 m">
+					<div class="keyvalue">
+						<div class="key">@(Produits commandés)</div>
+						<div class="value">x@{model.count}</div>
+					</div>
+				</div>
+				<div class="col-md-6 m">
+					<div class="keyvalue">
+						<div class="key">@(Remise)</div>
+						<div class="value">@{model.discount}%</div>
+					</div>
+				</div>
+				<div class="col-md-6 m">
+					<div class="keyvalue">
+						<div class="key">@(Adresse IP)</div>
+						<div class="value">@{model.ip}</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-6">
+		<div class="content">
+			<div class="contentbody bg-yellow">
+				<div class="keyvalue m">
+					<div class="key"><i class="fa fa-dropbox"></i>@(Livraison)</div>
+					<div class="value">@{model.delivery}</div>
+				</div>
+				<div class="keyvalue m">
+					<div class="key"><i class="fa fa-dropbox"></i>@(Paiement)</div>
+					<div class="value">@{model.payment}@{if model.ispaid}<span class="badge badge-green">@(PAYÉ)</span>@{else}<span class="badge">@(NON PAYÉ)</span>@{fi}</div>
+				</div>
+				<div class="keyvalue m">
+					<div class="key"><i class="fa fa-at"></i>@(Code de suivi)</div>
+					<div class="value">@{if model.trackingcode}@{model.trackingcode}@{else}@(Non défini)@{fi}</div>
+				</div>
+			</div>
+			<div class="contentbody">
+				<div class="keyvalue m">
+					<div class="key"><i class="fa fa-address-book"></i>@(Adresse de facturation)</div>
+					<div class="value">@{model.billingstreet}<br />@{model.billingzip}<br />@{model.billingcity}<br />@{model.billingcountry}</div>
+				</div>
+				<div class="keyvalue">
+					<div class="key"><i class="fa fa-truck"></i>@(Adresse de livraison)</div>
+					<div class="value">@{model.deliveryfirstname} @{model.deliverylastname}<br />@{model.deliverystreet}<br />@{model.deliveryzip}<br />@{model.deliverycity}<br />@{model.deliverycountry}<br />@(Téléphone:) @{model.deliveryphone}</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<br />
+<h2>@(Produits commandés)</h2>
+<table class="table table-bordered bg-white">
+	<thead>
+		<tr>
+			<th>@(Nom de produit)</th>
+			<th class="ui-center col-xs-1">@(Nombre)</th>
+			<th class="ui-right col-sm-3 col-xs-4">@(Prix)</th>
+		</tr>
+	</thead>
+	<tbody class="orderedproducts">
+		@{foreach m in model.items}
+		<tr>
+			<td>@{m.name}</td>
+			<td class="ui-center col-xs-1">@{m.count}</td>
+			<td class="ui-right col-sm-3 col-xs-4">@{!(m.count * m.price).currency()}</td>
+		</tr>
+		@{end}
+	</tbody>
+	<tfoot>
+		<tr class="bg-yellow">
+			<td class="b">@(Résumé)</td>
+			<td class="b ui-center">@{model.count}</td>
+			<td class="b ui-right red">@{!model.price.currency()}</td>
+		</tr>
+	</tfoot>
+</table>
+
+<script>
+	function pay(btn) {
+		SETTER('loading', 'show');
+		location.href = location.pathname + '?payment=' + btn.prop('name');
+	}
+
+	// Highlight sizes and colors
+	$('.orderedproducts').find('tr').each(function() {
+		var el = $(this).find('td:first-child');
+		var html = el.html();
+		html.substring(0, 1) === '[' && el.html(html.replace(/^\[.*?\]/, n => '<b class="badge badge-blue badge-large">' + n.replace(/\[|\]/g, '') + '</b>'));
+	});
+
+</script>
+
+
+
+
+
