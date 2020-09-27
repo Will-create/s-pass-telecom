@@ -1,5 +1,5 @@
 {
-  "pid": 13460,
+  "pid": 13556,
   "stats": [
     {
       "id": null,
@@ -8,15 +8,15 @@
         "total": "3.4.5",
         "app": "11.0.0"
       },
-      "pid": 13460,
+      "pid": 13556,
       "thread": "",
       "mode": "debug",
-      "date": "2020-09-27T03:51:06.189Z",
-      "memory": 15.97,
-      "rm": 4,
-      "fm": 0,
+      "date": "2020-09-27T04:33:34.457Z",
+      "memory": 17.67,
+      "rm": 2.42,
+      "fm": 0.19,
       "usage": 0,
-      "requests": 4,
+      "requests": 102,
       "pending": 0,
       "errors": 0,
       "timeouts": 0
