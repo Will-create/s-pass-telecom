@@ -18,7 +18,7 @@
 	<style type="text/css">
 		/*auto*/
 		html,body { overflow: hidden; height: 100%; }
-		body { background-color: #E6E9ED; }
+		body { background-image: url(/img/logo.png);background-repeat: no-repeat; background-size: cover; background-attachment: fixed;}
 		.panel { max-width: 280px; width: 100%; position: absolute; left: 50%; top: 50%; margin: -300px 0 0 -140px; background-color: white; box-shadow: 0 5px 10px rgba(0,0,0,0.1); border-radius: 4px; transition: all 0.5s; transform: scale(1.5); }
 		.padding { padding: 20px; }
 		.panelshow { transform: scale(1); }
@@ -46,6 +46,7 @@
 		.ui-error .fa { width: 16px; }
 
 		.hidden { display: none; }
+		.telecom { height: 2em; width: fit-content; }
 		.m { margin-bottom: 15px; }
 
 		button { background-color: #4285F4; border: 0; color: white; cursor: pointer; outline: 0; width: 100%; border-radius: 4px; height: 50px; text-transform: uppercase; }
@@ -63,10 +64,11 @@
 <body>
 
 	<div class="panel">
-		<a href="/" class="logo"><img src="/img/logo.png" alt="logo" border="0" /></a>
+		
 		<h1><i class="fa fa-lock"></i>@(Administrateur)</h1>
 
 		<div class="padding">
+			
 			<div class="m" data-jc="textbox" data-jc-path="form.name" data-jc-config="icon2:user;required:true;autofocus:true;autofill:true">@(Nom de connexion)</div>
 			<div class="m" data-jc="textbox" data-jc-path="form.password" data-jc-config="icon2:lock;required:true;type:password;autofill:true">@(Mot de passe)</div>
 			<div data-jc="error" data-jc-path="form.response"></div>
