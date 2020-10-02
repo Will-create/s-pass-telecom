@@ -46,3 +46,9 @@
     at IncomingMessage.emit (events.js:203:15)
     at endReadableNT (_stream_readable.js:1145:12)
     at process._tickCallback (internal/process/next_tick.js:63:19)
+2020-10-02 18:49:37 | 352549001nf61b Error: ACK Failure: Security header is not valid
+    at /home/chris/Bureau/telecom/s-pass-telecom/node_modules/paypal-express-checkout/index.js:138:13
+    at IncomingMessage.<anonymous> (/home/chris/Bureau/telecom/s-pass-telecom/node_modules/paypal-express-checkout/index.js:176:4)
+    at IncomingMessage.emit (events.js:327:22)
+    at endReadableNT (_stream_readable.js:1220:12)
+    at processTicksAndRejections (internal/process/task_queues.js:84:21)
