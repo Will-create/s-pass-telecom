@@ -1,25 +1,25 @@
 {
-  "pid": 61641,
+  "pid": 10350,
   "stats": [
     {
       "id": null,
       "version": {
-        "node": "v10.21.0",
+        "node": "v12.18.4",
         "total": "3.4.5",
         "app": "9.0.0"
       },
-      "pid": 61641,
+      "pid": 10350,
       "thread": "",
       "mode": "debug",
-      "date": "2020-09-19T13:11:46.927Z",
-      "memory": 20.14,
-      "rm": 29.5,
-      "fm": 23.66,
+      "date": "2020-10-02T18:53:53.275Z",
+      "memory": 12.6,
+      "rm": 23.25,
+      "fm": 14.62,
       "usage": 0,
-      "requests": 177,
+      "requests": 1186,
       "pending": 0,
-      "errors": 0,
-      "timeouts": 0
+      "errors": 50,
+      "timeouts": 1
     }
   ]
 }
