@@ -1,22 +1,22 @@
 {
-  "pid": 13556,
+  "pid": 5121,
   "stats": [
     {
       "id": null,
       "version": {
         "node": "v10.21.0",
         "total": "3.4.5",
-        "app": "11.0.0"
+        "app": "9.0.0"
       },
-      "pid": 13556,
+      "pid": 5121,
       "thread": "",
       "mode": "debug",
-      "date": "2020-09-27T04:46:34.593Z",
-      "memory": 13.14,
-      "rm": 2.74,
-      "fm": 0.3,
+      "date": "2020-10-02T12:55:31.811Z",
+      "memory": 13.63,
+      "rm": 0.3,
+      "fm": 0.17,
       "usage": 0,
-      "requests": 151,
+      "requests": 33,
       "pending": 0,
       "errors": 0,
       "timeouts": 0
