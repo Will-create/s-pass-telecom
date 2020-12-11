@@ -18,3 +18,4 @@ account           : @(Mon Compte)          --> @(/Compte/)             --> homep
 order             : @(Details commandes)        --> @(/validation/{0}/)        --> account
 settings          : @(Paramètres de compte)    --> @(/compte/paramètres/)    --> account
 logoff            : @(Déconnexion)              --> @(/déconnexion/)              --> homepage
+ 

@@ -65,7 +65,7 @@
 						AJAX('DELETE [url]api/{0}/'.format(ctrl.scope), row, function(response) {
 							SETTER('loading', 'hide', 1000);
 							if (response.success) {
-								SETTER('snackbar', 'success', '@(Commande supprimer avec succès!.)');
+								SETTER('snackbar', 'success', '@(Commande supprimer avec succès!)');
 								ctrl.refresh();
 							}
 						});
@@ -103,7 +103,7 @@
 						AJAX('GET [url]api/{0}/toggle/'.format(ctrl.scope), { id: arr.join(','), type: item.id }, ctrl.refresh);
 						break;
 					case 'remove':
-						SETTER('confirm', 'show', '@(Etes-vous sûre de vouloir supprimer les commandes sélectionnées?)', ['"trash"@(Supprimer', '@(Non)'], function(index) {
+						SETTER('confirm', 'show', '@(Etes-vous sûre de vouloir supprimer les commandes sélectionnées?)', ['"trash"@(Supprimer)', '@(Non)'], function(index) {
 							if (index)
 								return;
 							SETTER('loading', 'show', 'trash-o');
@@ -114,7 +114,7 @@
 							}, function() {
 								ctrl.refresh();
 								SETTER('loading', 'hide', 1000);
-								SETTER('snackbar', 'success', '@(Commandes supprimées avec succès!.)');
+								SETTER('snackbar', 'success', '@(Commandes supprimées avec succès!)');
 							});
 						});
 						break;
@@ -140,7 +140,6 @@
 				}
 			}, 0, 5);
 		};
-
 		ctrl.filter = function(type, input, sort, page, grid) {
 			filter = input ? CLONE(input) : {};
 			sort && (filter.sort = sort.name + '_' + sort.sorting);
@@ -148,5 +147,4 @@
 			ctrl.refresh();
 		};
 	});
-
 </script>

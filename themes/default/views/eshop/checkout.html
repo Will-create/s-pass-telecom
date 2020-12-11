@@ -21,7 +21,7 @@
 					<div class="checkout-controls">
 						<div class="sum">..</div>
 						<div class="count"><input type="text" maxlength="2" /></div>
-						<div class="price">/ @(1 morceau =) <span>...</span></div>
+						<div class="price">/ @(Prix unitaire =) <span>...</span></div>
 						<div class="stock">@(Disponible:) <b>...</b></div>
 					</div>
 				</div>
@@ -41,15 +41,15 @@
 				</div>
 				<div class="row">
 					<div class="col-md-6 m">
-						<div data-jc="textbox" data-jc-path="order.form.email" data-jc-config="required:true;type:email;maxlength:120" data-jc-value="'@'">@(Adresse E-mail)</div>
+						<div data-jc="textbox" data-jc-path="order.form.phone" data-jc-config="required:true;type:phone;placeholder:@(ex:+22652133010);maxlength:25">@(Téléphone)</div>
 					</div>
 					<div class="col-md-6 m">
-						<div data-jc="textbox" data-jc-path="order.form.phone" data-jc-config="required:true;type:phone;placeholder:@(ex:+22652133010);maxlength:25">@(Téléphone)</div>
+						<div data-jc="textbox" data-jc-path="order.form.email" data-jc-config="type:email;maxlength:120" data-jc-value="'@'">@(Adresse E-mail)</div>
 					</div>
 				</div>
 			</div>
 			<hr class="nmt nmb" />
-			<div class="contentbody">
+			<!-- <div class="contentbody">
 				<div class="caption"><i class="fa fa-address-card"></i>@(Addresse de Facturation)</div>
 				<div class="row">
 					<div class="col-md-6 m">
@@ -68,8 +68,8 @@
 					</div>
 				</div>
 				<div data-jc="checkbox" data-jc-path="order.form.iscompany">@(Entreprise de facturation)</div>
-			</div>
-			<div  data-b="order.form.iscompany" data-b-visible="value === true" class="hidden contentbody bg-yellow">
+			</div> -->
+			<!-- <div  data-b="order.form.iscompany" data-b-visible="value === true" class="hidden contentbody bg-yellow">
 				<div data-jc="textbox" data-jc-path="order.form.company" data-jc-config="maxlength:40;required:true" class="m">@(Entreprise)</div>
 				<div class="row">
 					<div class="col-md-6 m">
@@ -79,10 +79,10 @@
 						<div data-jc="textbox" data-jc-path="order.form.companyvat" data-jc-config="maxlength:30;required:true">@(Numero TVA)</div>
 					</div>
 				</div>
-			</div>
-			<hr class="nmt nmb" />
+			</div> -->
+			
 			<div class="contentbody">
-				<div data-jc="dropdown" data-jc-path="order.form.delivery" data-jc-config="icon:truck;required:true;datasource:order.dependencies.deliverytypes;empty:">@(Livraison)</div>
+				<div data-jc="dropdown" data-jc-path="order.form.delivery" data-jc-config="icon:truck;datasource:order.dependencies.deliverytypes;empty:">@(Livraison)</div>
 				<div class="help m">@(Choisir un type livraison.)</div>
 				<div data-jc="dropdown" data-jc-path="order.form.payment" data-jc-config="icon:credit-card;required:true;datasource:order.dependencies.paymenttypes;empty:">@(Paiement)</div>
 				<div class="help">@(Choisir un type de paiement.)</div>
@@ -100,7 +100,7 @@
 				</div>
 				<div class="row">
 					<div class="col-md-6 m">
-						<div data-jc="textbox" data-jc-path="order.form.deliveryphone" data-jc-config="required:true;type:phone;placeholder:@(International format);maxlength:25">@(Phone number)</div>
+						<div data-jc="textbox" data-jc-path="order.form.deliveryphone" data-jc-config="required:true;type:phone;placeholder:@(En format international);maxlength:25">@(Phone number)</div>
 						<div class="help">@(Ce numéro c'est pour le courier.)</div>
 					</div>
 					<div class="col-md-6" style="margin-top:10px">
@@ -113,24 +113,24 @@
 			<div class="contentbody bg-yellow">
 				<div class="row">
 					<div class="col-md-6 m">
-						<div data-jc="textbox" data-jc-path="order.form.deliverystreet" data-jc-config="required:true;maxlength:50">@(Rue)</div>
+						<div data-jc="textbox" data-jc-path="order.form.deliverycity" data-jc-config="required:true;maxlength:50">@(Ville)</div>
 					</div>
-					<div class="col-md-3 m">
+					<!-- <div class="col-md-3 m">
 						<div data-jc="textbox" data-jc-path="order.form.deliveryzip" data-jc-config="required:true;type:zip;align:center">@(ZIP)</div>
+					</div> -->
+					<div class="col-md-6 m">
+						<div data-jc="textbox" data-jc-path="order.form.deliverystreet" data-jc-config="required:true;maxlength:50">@(Rue ou Quartier)</div>
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-md-6 m">
-						<div data-jc="textbox" data-jc-path="order.form.deliverycity" data-jc-config="required:true;maxlength:50">@(Ville)</div>
-					</div>
-					<div class="col-md-6 m">
+					<!-- <div class="col-md-6 m">
 						<div data-jc="textbox" data-jc-path="order.form.deliverycountry" data-jc-config="required:true;maxlength:50">@(Pays)</div>
-					</div>
+					</div> -->
 				</div>
 				<a href="javascript:void(0)" class="copy exec" data-exec="ordercopyaddress"><i class="fa fa-copy"></i>@(Copier l'adresse de livraison)</a>
 			</div>
 			<div class="contentbody">
-				<div data-jc="textarea" data-jc-path="order.form.note" class="m">@(Note)</div>
+				<div data-jc="textarea" data-jc-path="order.form.note" data-jc-config="placeholder:@(Aidez);" class="m">@(Note)</div>
 				<div data-jc="checkbox" data-jc-path="order.form.isnewsletter" data-jc-value="true">@(Je veux être notifier a propos des promo et des nouveautés)</div>
 				<div data-jc="checkbox" data-jc-path="order.form.isterms" class="m b red">@(j'accepte les termes et les conditions)</div>
 				<div data-jc="error" data-jc-path="order.form.response"></div>

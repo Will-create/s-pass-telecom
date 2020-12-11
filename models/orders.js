@@ -6,7 +6,7 @@
 // "paid"       - sets ispaid to true
 // "clear"      - removes all orders
 
-NEWSCHEMA('OrderItem').make(function(schema) {
+NEWSCHEMA('OrderItem').make(function (schema) {
 	schema.define('id', 'String(24)');
 	schema.define('idvariant', 'UID');
 	schema.define('price', Number);
@@ -15,12 +15,12 @@ NEWSCHEMA('OrderItem').make(function(schema) {
 	schema.define('count', Number, true);
 });
 
-NEWSCHEMA('OrderStatus').make(function(schema) {
+NEWSCHEMA('OrderStatus').make(function (schema) {
 	schema.define('date', Date);
 	schema.define('status', 'String(100)');
 });
 
-NEWSCHEMA('Order').make(function(schema) {
+NEWSCHEMA('Order').make(function (schema) {
 
 	schema.define('id', 'UID');
 	schema.define('iduser', 'UID');
@@ -43,14 +43,14 @@ NEWSCHEMA('Order').make(function(schema) {
 	schema.define('count', Number);
 	schema.define('items', '[OrderItem]', true);
 
-	schema.define('company', 'String(40)', true);
-	schema.define('companyid', 'String(15)', true);
-	schema.define('companyvat', 'String(30)', true);
+	schema.define('company', 'String(40)');
+	schema.define('companyid', 'String(15)');
+	schema.define('companyvat', 'String(30)');
 
-	schema.define('billingstreet', 'String(50)', true);
-	schema.define('billingzip', 'String(20)', true);
-	schema.define('billingcity', 'String(50)', true);
-	schema.define('billingcountry', 'String(50)', true);
+	schema.define('billingstreet', 'String(50)');
+	schema.define('billingzip', 'String(20)');
+	schema.define('billingcity', 'String(50)');
+	schema.define('billingcountry', 'String(50)');
 
 	schema.define('deliveryfirstname', 'String(50)');
 	schema.define('deliverylastname', 'String(50)');
@@ -71,7 +71,7 @@ NEWSCHEMA('Order').make(function(schema) {
 	schema.required('company, companyvat, companyid', n => n.iscompany);
 
 	// Sets default values
-	schema.setDefault(function(name) {
+	schema.setDefault(function (name) {
 		switch (name) {
 			case 'status':
 				return F.global.config.defaultorderstatus;
@@ -79,7 +79,7 @@ NEWSCHEMA('Order').make(function(schema) {
 	});
 
 	// Gets listing
-	schema.setQuery(function($) {
+	schema.setQuery(function ($) {
 
 		var opt = $.options === EMPTYOBJECT ? $.query : $.options;
 		var isAdmin = $.controller ? $.controller.name === 'admin' : false;
@@ -114,7 +114,7 @@ NEWSCHEMA('Order').make(function(schema) {
 	});
 
 	// Saves the order into the database
-	schema.setSave(function($) {
+	schema.setSave(function ($) {
 
 		var model = $.model;
 		var user = $.user.name;
@@ -161,7 +161,7 @@ NEWSCHEMA('Order').make(function(schema) {
 
 		var db = isUpdate ? nosql.modify(model).where('id', model.id).backup(user).log('Update: ' + model.id, user) : nosql.insert(model).log('Create: ' + model.id, user);
 
-		db.callback(function() {
+		db.callback(function () {
 			EMIT('orders.save', model);
 			ADMIN.notify({ type: 'orders.save', message: model.name + ', ' + model.price.format(2) });
 			$.success();
@@ -172,7 +172,7 @@ NEWSCHEMA('Order').make(function(schema) {
 	});
 
 	// Creates order
-	schema.addWorkflow('create', function($) {
+	schema.addWorkflow('create', function ($) {
 
 		var model = $.model;
 
@@ -188,7 +188,7 @@ NEWSCHEMA('Order').make(function(schema) {
 
 		// Get prices of ordered products
 		// This is the check for price hijacking
-		$WORKFLOW('Product', 'prices', options, function(err, response) {
+		$WORKFLOW('Product', 'prices', options, function (err, response) {
 
 			// Some unexpected error
 			if (err) {
@@ -283,16 +283,18 @@ NEWSCHEMA('Order').make(function(schema) {
 			model.statushistory = [{ date: F.datetime, status: model.status }];
 
 			// Updates stock
-			NOSQL('products').modify({ prices: function(val) {
-				for (var i = 0; i < val.length; i++) {
-					var price = val[i];
-					if (stock[price.id])
-						price.stock -= stock[price.id];
+			NOSQL('products').modify({
+				prices: function (val) {
+					for (var i = 0; i < val.length; i++) {
+						var price = val[i];
+						if (stock[price.id])
+							price.stock -= stock[price.id];
+					}
+					return val;
+				}, stock: function (val, doc) {
+					return val - stocksum[doc.id];
 				}
-				return val;
-			}, stock: function(val, doc) {
-				return val - stocksum[doc.id];
-			}}).in('id', options.id).log('Update stock, order #: ' + model.id, model.name + ' (customer)');
+			}).in('id', options.id).log('Update stock, order #: ' + model.id, model.name + ' (customer)');
 
 			// Writes stats
 			counter.hit('all');
@@ -327,18 +329,18 @@ NEWSCHEMA('Order').make(function(schema) {
 	});
 
 	// Gets a specific order
-	schema.setGet(function($) {
+	schema.setGet(function ($) {
 		NOSQL('orders').one().where('id', $.options.id || $.id).callback($.callback, 'error-orders-404');
 	});
 
 	// Removes order from DB
-	schema.setRemove(function($) {
+	schema.setRemove(function ($) {
 		var id = $.body.id;
 		var user = $.user.name;
 		NOSQL('orders').remove().backup(user).log('Remove: ' + id, user).where('id', id).callback(() => $.success());
 	});
 
-	schema.addWorkflow('toggle', function($) {
+	schema.addWorkflow('toggle', function ($) {
 
 		var user = $.user.name;
 		var arr = $.options.id ? $.options.id : $.query.id.split(',');
@@ -365,17 +367,17 @@ NEWSCHEMA('Order').make(function(schema) {
 	});
 
 	// Clears DB
-	schema.addWorkflow('clear', function($) {
+	schema.addWorkflow('clear', function ($) {
 		var user = $.user.name;
 		NOSQL('orders').remove().backup(user).log('Clear all orders', user).callback(() => $.success());
 	});
 
 	// Stats
-	schema.addWorkflow('stats', function(error, model, options, callback) {
+	schema.addWorkflow('stats', function (error, model, options, callback) {
 		NOSQL('orders').counter.monthly('all', callback);
 	});
 
-	schema.addWorkflow('dependencies', function($) {
+	schema.addWorkflow('dependencies', function ($) {
 		var obj = {};
 		obj.paymenttypes = F.global.config.paymenttypes;
 		obj.deliverytypes = F.global.config.deliverytypes;
@@ -383,7 +385,7 @@ NEWSCHEMA('Order').make(function(schema) {
 	});
 
 	// Gets some stats from orders for Dashboard
-	schema.addOperation('dashboard', function(error, model, options, callback) {
+	schema.addOperation('dashboard', function (error, model, options, callback) {
 
 		var stats = {};
 
@@ -392,7 +394,7 @@ NEWSCHEMA('Order').make(function(schema) {
 		stats.pending = 0;
 		stats.pending_price = 0;
 
-		var prepare = function(doc) {
+		var prepare = function (doc) {
 			if (doc.isfinished) {
 				stats.completed++;
 				stats.completed_price += doc.price;
@@ -407,7 +409,7 @@ NEWSCHEMA('Order').make(function(schema) {
 	});
 
 	// Sets the payment status to paid
-	schema.addWorkflow('paid', function($) {
+	schema.addWorkflow('paid', function ($) {
 		NOSQL('orders').modify({ ispaid: true, datepaid: F.datetime }).where('ispaid', false).where('id', $.id || $.options.id).callback((err, count) => $.success(count > 0));
 	});
 });

@@ -36,10 +36,8 @@ var common = {};
 })();
 
 $(document).ready(function() {
-
 	refresh_category();
 	refresh_prices();
-
 	$(document).on('click', '.addcart', function() {
 		var btn = $(this);
 		SETTER('shoppingcart', 'add', btn.attrd('id'), +btn.attrd('price'), 1, btn.attrd('name'), btn.attrd('idvariant'), btn.attrd('variant'));
@@ -54,7 +52,6 @@ $(document).ready(function() {
 				render(EMPTYARRAY);
 				return;
 			}
-
 			param.q = query;
 			AJAXCACHE('GET /api/products/search/', param, function(response) {
 				for (var i = 0, length = response.length; i < length; i++)
@@ -71,15 +68,12 @@ $(document).ready(function() {
 		$('.categoriescontainer').tclass('categoriesvisible');
 		$(this).find('.fa').tclass('fa-chevron-down fa-chevron-up');
 	});
-
 	$('.emailencode').each(function() {
 		var el = $(this);
 		el.html('<a href="mailto:{0}">{0}</a>'.format(el.html().replace(/\(at\)/g, '@').replace(/\(dot\)/g, '.')));
 	});
 });
-
 ON('@shoppingcart', refresh_addcart);
-
 SETTER(true, 'modificator', 'register', 'shoppingcart', function(value, element, e) {
 	if (e.type === 'init')
 		return;
@@ -91,7 +85,6 @@ SETTER(true, 'modificator', 'register', 'shoppingcart', function(value, element,
 		element.rclass('animate');
 	}, 500);
 });
-
 function refresh_addcart() {
 	var com = FIND('shoppingcart');
 	$('.addcart').each(function() {
@@ -99,7 +92,6 @@ function refresh_addcart() {
 		com.has(el) && el.aclass('is').find('.fa').rclass2('fa-').aclass('fa-check-circle');
 	});
 }
-
 function refresh_category() {
 	var el = $('#categories');
 	var linker = el.attrd('url');
@@ -113,30 +105,23 @@ function refresh_category() {
 		}
 	});
 }
-
 function refresh_prices() {
 
 	var items = $('.product');
 	if (!items.length)
 		return;
-
 	FIND('shoppingcart', function(com) {
 		var discount = com.config.discount;
 		items.each(function() {
-
 			var t = this;
-
 			if (t.$priceprocessed)
 				return;
-
 			t.$priceprocessed = true;
-
 			var el = $(t);
 			var price = +el.attrd('new');
 			var priceold = +el.attrd('old');
 			var currency = el.attrd('currency');
 			var p;
-
 			if (discount)
 				p = discount;
 			else if (priceold && price < priceold)
@@ -149,7 +134,6 @@ function refresh_prices() {
 				el.find('.price > div').html(currency.format(price.inc('-' + discount + '%').format(2)) + plus);
 			}
 		});
-
 		setTimeout(function() {
 			items.find('.diff').each(function(index) {
 				setTimeout(function(el) {

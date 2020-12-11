@@ -144,6 +144,10 @@ function view_order(id) {
 			switch (self.query.payment) {
 				case 'paypal':
 					paypal_redirect(response, self);
+			   	case 'mobicash':
+					mobicash_redirect(response, self);
+				case 'orangemoney':
+				    orangemoney_redirect(response, self);
 					return;
 			}
 		}
@@ -189,6 +193,31 @@ function paypal_redirect(order, controller) {
 	});
 }
 
+
+function mobicash_redirect(order, controller) {
+	var redirect = F.global.config.url + controller.sitemap_url('order', controller.id) + 'mobicash/';
+	var paypal = require('paypal-express-checkout').create(F.global.config.paypaluser, F.global.config.paypalpassword, F.global.config.paypalsignature, redirect, redirect, F.global.config.paypaldebug);
+	paypal.pay(order.id, order.price, F.config.name, F.global.config.currency, function(err, url) {
+		if (err) {
+			LOGGER('mobicash', order.id, err);
+			controller.throw500(err);
+		} else
+			controller.redirect(url);
+	});
+}
+function orangemoney_redirect(order, controller) {
+	var redirect = F.global.config.url + controller.sitemap_url('order', controller.id) + 'orangemoney/';
+	var paypal = require('paypal-express-checkout').create(F.global.config.paypaluser, F.global.config.paypalpassword, F.global.config.paypalsignature, redirect, redirect, F.global.config.paypaldebug);
+	paypal.pay(order.id, order.price, F.config.name, F.global.config.currency, function(err, url) {
+		if (err) {
+			LOGGER('orangemoney', order.id, err);
+			controller.throw500(err);
+		} else
+			controller.redirect(url);
+	});
+}
+
+
 function paypal_process(id) {
 
 	var self = this;
@@ -198,11 +227,8 @@ function paypal_process(id) {
 	self.id = id;
 
 	paypal.detail(self, function(err, data) {
-
 		LOGGER('paypal', self.id, JSON.stringify(data));
-
 		var success = false;
-
 		switch ((data.PAYMENTSTATUS || '').toLowerCase()) {
 			case 'pending':
 			case 'completed':
@@ -210,9 +236,7 @@ function paypal_process(id) {
 				success = true;
 				break;
 		}
-
 		var url = self.sitemap_url('order', self.id);
-
 		if (success)
 			self.$workflow('paid', () => self.redirect(url + '?paid=1'));
 		else

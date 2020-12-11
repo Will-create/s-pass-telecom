@@ -78,8 +78,13 @@
 
 				@{if !model.isfinished && !model.ispaid}
 					<br />
-					<div><button class="button b exec" name="paypal" data-exec="pay"><i class="fa fa-paypal"></i>@(Payer maintenant)</button></div>
-					<div class="help">@(Vous allez être redirigé vers page <b>PayPal</b> de paiement sécurisé.)</div>
+					<div><button class="button b exec" name="paypal" data-exec="pay"><i class="fa fa-paypal"></i>@(Paypal)</button></div>
+					<br>
+					<div><button class="button b exec" name="mobicash" data-exec="pay"><i class="fa fa-money"></i>@(Mobicash)</button></div>
+					<br>
+					<div><button class="button b exec" name="orangemoney" data-exec="pay"><i class="fa fa-money"></i>@(Orange Money)</button></div>
+
+					<div class="help">@(Vous allez être redirigé vers une page  de paiement sécurisé.)</div>
 				@{fi}
 
 			</div>
@@ -192,6 +197,7 @@
 </table>
 
 <script>
+	console.log(model);
 	function pay(btn) {
 		SETTER('loading', 'show');
 		location.href = location.pathname + '?payment=' + btn.prop('name');

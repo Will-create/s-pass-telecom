@@ -84,7 +84,6 @@
 							<div><input type="text" placeholder="@(Rechercher des produits ...)" name="q" value="@{query.q}" id="search" autocomplete="off" /></div>
 						</form>
 					</header>
-
 					<nav class="breadcrumb">
 						@{foreach m in sitemap()}
 							@{if m.id === 'category'}
@@ -101,8 +100,6 @@
 	</div>
 	<br />
 	<br />
-
 	<script src="@{global.js}"></script>
-
 </body>
 </html>

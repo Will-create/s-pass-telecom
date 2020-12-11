@@ -37,3 +37,7 @@ function unsubscribe() {
 	var self = this;
 	self.$workflow('unsubscribe', () => self.plain(TRANSLATOR(self.language, '@(You have been successfully unsubscribed.\nThank you)')));
 }
+
+
+
+
