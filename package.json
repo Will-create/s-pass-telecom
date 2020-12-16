@@ -8,6 +8,7 @@
     "url": "https://github.com/totaljs/eshop"
   },
   "dependencies": {
+    "axios": "^0.21.0",
     "paypal-express-checkout": "latest",
     "total.js": "latest"
   },

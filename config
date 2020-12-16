@@ -5,7 +5,9 @@ author                    : Louis Bertson
 // Hidden super admin in the form username:password
 admin-superadmin          : spass:spass123456
 admin-cookie              : __admin
-
+ligdicash_apikey         : ZVBGJYG9VS9B283ES
+ligdicash_authorization  : eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZF9hcHAiOiI0MjQiLCJpZF9hYm9ubmUiOiI2MzQyNiIsImRhdGVjcmVhdGlvbl9hcHAiOiIyMDIwLTEyLTEyIDEyOjE5OjUxIn0.7BkQviVdzbhgSEvA2J-Kog1fKGKaO1_lcfhZ1yAA8Eg
+ligdicash_debug           : false
 // Enables real-time visitor tracking
 admin-tracking            : true
 

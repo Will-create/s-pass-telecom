@@ -113,15 +113,11 @@
 		});
 
 		$(document).on('click', '.navigation', function() {
-
 			var items = [];
-
 			FIND('sitemap').items.forEach(function(item) {
 				(user.sa || !user.roles.length || user.roles.indexOf(item.role) !== -1) && items.push({ name: item.title, icon: item.icon, url: item.route });
 			});
-
 			items.push({ name: '@(Déconnexion)', icon: 'power-off', signout: true });
-
 			SETTER('contextmenu', 'show', 'left', $(this), items, function(item) {
 				if (item.signout) {
 					MAIN.cookies.rem('@{'%admin-cookie'}');
@@ -131,12 +127,9 @@
 			}, 8, 5);
 
 		});
-
 		Tangular.register('time', function(value) {
-
 			if (!value)
 				return;
-
 			var diff = Date.now() - value.parseDate().getTime();
 			var minutes = ((diff / 1000) / 60) >> 0;
 
