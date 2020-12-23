@@ -3,7 +3,7 @@ version                   : 9.0.0
 author                    : Louis Bertson
 
 // Hidden super admin in the form username:password
-admin-superadmin          : spass:spass123456
+admin-superadmin          : admin:admin
 admin-cookie              : __admin
 ligdicash_apikey         : ZVBGJYG9VS9B283ES
 ligdicash_authorization  : eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZF9hcHAiOiI0MjQiLCJpZF9hYm9ubmUiOiI2MzQyNiIsImRhdGVjcmVhdGlvbl9hcHAiOiIyMDIwLTEyLTEyIDEyOjE5OjUxIn0.7BkQviVdzbhgSEvA2J-Kog1fKGKaO1_lcfhZ1yAA8Eg
@@ -13,7 +13,7 @@ admin-tracking            : true
 
 // Image convertor for resizing of pictures
 // Default image converter: im = ImageMagick, gm = GraphicsMagick
-default_image_converter   : gm
+default_image_converter   : im
 
 // Default theme
 default_theme             : default

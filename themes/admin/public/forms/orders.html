@@ -30,7 +30,7 @@
 	}
 </style>
 
-<div data-jc="form" data-jc-path="common.form" class="hidden" data-jc-config="icon:shopping-cart;if:orders-form;width:999;reload:Orders/formShow;submit:Orders/formSubmit;autofocus:true" data-jc-controller="Orders">
+<div data-jc="form" data-jc-path="common.form" class="hidden bg-yellow" data-jc-config="icon:shopping-cart;if:orders-form;width:999;reload:Orders/formShow;submit:Orders/formSubmit;autofocus:true" data-jc-controller="Orders">
 
 	<div data-b="orders.form" data-b-template="true">
 		<script type="text/html">
@@ -185,6 +185,7 @@
 	</div>
 
 	
+	<div class="padding">
 		<br />
 		<div class="caption"><i class="fa fa-truck"></i>@(Adresse de livraison)</div>
 
@@ -220,7 +221,7 @@
 		</div>
 	</div>
 	<div class="padding">
-		<div class="caption"><i class="fa fa-shopping-cart"></i>@(Produits commandés)</div>
+		<div class="caption"><i class="fa fa-shopping-cart"></i>@(Produits commandés)
 		<div class="help nmt"><b><i class="fa fa-warning mr5"></i>@(IMPORTANT:)</b> @(La quantité de produits en stock n'affecte pas la quantité de produits commandés")</div>
 		<br />
 		<div data-jc="orderedproducts" data-jc-path="orders.form.items">
@@ -247,6 +248,8 @@
 		<button name="submit">@(SAUVEGARDER)</button>
 	</div>
 </div>
+</div>
+
 
 <script>
 
