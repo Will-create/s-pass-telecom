@@ -46,3 +46,11 @@
     at IncomingMessage.emit (events.js:203:15)
     at endReadableNT (_stream_readable.js:1145:12)
     at process._tickCallback (internal/process/next_tick.js:63:19)
+2020-12-23 17:07:21 | 470525001xf61b { Error: getaddrinfo EAI_AGAIN api-3t.paypal.com api-3t.paypal.com:443
+    at GetAddrInfoReqWrap.onlookup [as oncomplete] (dns.js:56:26)
+  errno: 'EAI_AGAIN',
+  code: 'EAI_AGAIN',
+  syscall: 'getaddrinfo',
+  hostname: 'api-3t.paypal.com',
+  host: 'api-3t.paypal.com',
+  port: 443 }
