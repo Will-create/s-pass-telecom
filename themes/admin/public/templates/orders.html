@@ -103,7 +103,7 @@
 						AJAX('GET [url]api/{0}/toggle/'.format(ctrl.scope), { id: arr.join(','), type: item.id }, ctrl.refresh);
 						break;
 					case 'remove':
-						SETTER('confirm', 'show', '@(Etes-vous sûre de vouloir supprimer les commandes sélectionnées?)', ['"trash"@(Supprimer', '@(Non)'], function(index) {
+						SETTER('confirm', 'show', '@(Etes-vous sûre de vouloir supprimer les commandes sélectionnées?)', ['"trash"@(Supprimer)', '@(Non)'], function(index) {
 							if (index)
 								return;
 							SETTER('loading', 'show', 'trash-o');

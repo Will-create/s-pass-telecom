@@ -24,10 +24,8 @@
 
 <script>
 	CONTROLLER('Notices', function(ctrl) {
-
 		ctrl.scope = 'notices';
 		ctrl.limit = 100; // Count of items per page
-
 		var toolbar = ctrl.virtualize({ btnChecked: '.toolbar button[name="checked"]' });
 		var filter; // A grid filter
 
