@@ -1,19 +1,19 @@
-error-widgets-404          : Widget not found.
-error-posts-404            : Post not found.
-error-pages-404            : Page not found.
-error-notices-404          : Notices not found.
+error-widgets-404          : Widget introuvable.
+error-posts-404            : Post introuvable.
+error-pages-404            : Page introuvable.
+error-notices-404          : Notices introuvable.
 
-error-newsletter-sending   : Newsletter is already sending mails.
-error-users-email          : Email is registered in database.
-error-users-credentials    : Invalid credentials.
-error-users-blocked        : Your account has been blocked.
-error-data                 : Invalid data.
-error-terms                : You need to agree with terms and conditions.
-error-password-check       : Your passwords do not match.
+error-newsletter-sending   : Newsletter est déja en train d'envoyer un mail.
+error-users-email          : Email enregistré dans la base de données.
+error-users-credentials    : Identifiants invalides.
+error-users-blocked        : Votre compte a été bloqué.
+error-data                 : Données invalides.
+error-terms                : Vous devez accepter les termes et les conditions.
+error-password-check       : Mots de passe non identiques.
 
-error-orders-stock         : We only have {1} "{0}" in stock.
+error-orders-stock         : We avons seulement {1} "{0}" en stock.
 
-error-products-404         : Product not found.
-error-products-stock       : Product is missing in stock.
+error-products-404         : Le Produit est introuvable.
+error-products-stock       : Le Produit est en manque.
 
-error-users-404            : Account not found.
+error-users-404            : Compte d'utilisateur introuvable.
