@@ -128,15 +128,12 @@ function refresh_prices() {
 
 			if (t.$priceprocessed)
 				return;
-
 			t.$priceprocessed = true;
-
 			var el = $(t);
 			var price = +el.attrd('new');
 			var priceold = +el.attrd('old');
 			var currency = el.attrd('currency');
 			var p;
-
 			if (discount)
 				p = discount;
 			else if (priceold && price < priceold)
@@ -149,7 +146,6 @@ function refresh_prices() {
 				el.find('.price > div').html(currency.format(price.inc('-' + discount + '%').format(2)) + plus);
 			}
 		});
-
 		setTimeout(function() {
 			items.find('.diff').each(function(index) {
 				setTimeout(function(el) {

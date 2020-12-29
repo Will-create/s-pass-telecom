@@ -105,7 +105,7 @@ function file_image(req, res) {
 
 				// Image processing
 				res.image(filename, function(image) {
-					console.log(image);
+					
 					image.islimit = true;
 					image.output('jpg');
 					image.quality(90);

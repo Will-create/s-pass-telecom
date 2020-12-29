@@ -13,6 +13,7 @@ exports.install = function() {
 
 	// Payment process
 	ROUTE('#order/paypal/', paypal_process, ['*Order', 10000]);
+	ROUTE('#order/ligdicash/', ligdicash_process, ['*Order', 10000]);
 };
 
 function view_category() {
@@ -141,10 +142,20 @@ function view_order(id) {
 		}
 
 		if (!response.ispaid) {
-			switch (self.query.payment) {
-				case 'paypal':
-					paypal_redirect(response, self);
-					return;
+			if (!self.query.numero){
+				switch (self.query.payment) {
+					case 'paypal':
+						
+						 paypal_redirect(response, self);
+					   
+						return;
+					}
+			
+			}else{
+                
+				
+				ligdicash_pay(response,self);
+
 			}
 		}
 
@@ -188,6 +199,25 @@ function paypal_redirect(order, controller) {
 			controller.redirect(url);
 	});
 }
+function ligdicash_pay(order, controller) {
+	var ligdicash = require('ligdicash').create(controller.query.numero, controller.uri.pathname,controller.uri.pathname, F.global.config.ligdicash_debug);
+	 ligdicash.post(order, controller, function(retour){
+		if(retour.status === 200){
+			if(retour.data.response_code === 00){
+				
+			}else{
+				LOGGER('ligdicash',order.id,retour.data.response_text);
+				
+			}
+		}else{
+
+		}
+		console.log(retour.data.response_code);
+	
+	});
+	
+		
+}
 
 function paypal_process(id) {
 
@@ -198,11 +228,33 @@ function paypal_process(id) {
 	self.id = id;
 
 	paypal.detail(self, function(err, data) {
-
 		LOGGER('paypal', self.id, JSON.stringify(data));
-
 		var success = false;
+		switch ((data.PAYMENTSTATUS || '').toLowerCase()) {
+			case 'pending':
+			case 'notcompleted':
+			case 'completed':
+				success = true;
+				break;
+		}
+		var url = self.sitemap_url('order', self.id);
+		if (success)
+			self.$workflow('paid', () => self.redirect(url + '?paid=1'));
+		else
+			self.redirect(url + '?paid=0');
+	});
+}
+function ligdicash_process(id) {
 
+	var self = this;
+	var redirect = F.global.config.url + self.url;
+	var ligdicash = require('ligdicash').create(F.global.config.paypaluser, F.global.config.paypalpassword, F.global.config.paypalsignature, redirect, redirect, F.global.config.paypaldebug);
+
+	self.id = id;
+
+	ligdicash.detail(self, function(err, data) {
+		LOGGER('paypal', self.id, JSON.stringify(data));
+		var success = false;
 		switch ((data.PAYMENTSTATUS || '').toLowerCase()) {
 			case 'pending':
 			case 'completed':
@@ -210,9 +262,7 @@ function paypal_process(id) {
 				success = true;
 				break;
 		}
-
 		var url = self.sitemap_url('order', self.id);
-
 		if (success)
 			self.$workflow('paid', () => self.redirect(url + '?paid=1'));
 		else

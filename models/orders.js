@@ -43,14 +43,14 @@ NEWSCHEMA('Order').make(function(schema) {
 	schema.define('count', Number);
 	schema.define('items', '[OrderItem]', true);
 
-	schema.define('company', 'String(40)', true);
-	schema.define('companyid', 'String(15)', true);
-	schema.define('companyvat', 'String(30)', true);
+	schema.define('company', 'String(40)');
+	schema.define('companyid', 'String(15)');
+	schema.define('companyvat', 'String(30)');
 
-	schema.define('billingstreet', 'String(50)', true);
-	schema.define('billingzip', 'String(20)', true);
-	schema.define('billingcity', 'String(50)', true);
-	schema.define('billingcountry', 'String(50)', true);
+	schema.define('billingstreet', 'String(50)');
+	schema.define('billingzip', 'String(20)');
+	schema.define('billingcity', 'String(50)');
+	schema.define('billingcountry', 'String(50)');
 
 	schema.define('deliveryfirstname', 'String(50)');
 	schema.define('deliverylastname', 'String(50)');
