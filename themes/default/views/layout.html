@@ -16,6 +16,24 @@
 <body data-jc="exec,binder,modificator">
 	<style>
 		.bg-orange{background-color: #ff7b13; color:white;padding-top: 1em;}
+		.bg-red{background-color: red; color:white;padding-top: 1em;}
+		
+		@keyframes clignote {
+			0%{box-shadow:0px 0px 20px hsl(22, 92%, 57%);;}
+			50%{box-shadow:0px 0px 0px hsl(14, 96%, 55%);}
+			100%{box-shadow:0px 0px 20px  hsl(22, 92%, 57%);}
+			}
+			.boutonarticle{
+				font-weight: bold;
+				text-shadow: 0 1px 0 white;
+				border-radius: 3px;
+				padding: 5px 10px;
+				border: 1px solid #DDD;
+				box-shadow:0px 0px 10px #4183C4;
+				animation-name: clignote; 
+				animation-duration: .8s;
+				animation-iteration-count:infinite;
+				}
 		
 	</style>
 	<br />
@@ -27,6 +45,7 @@
 	<div class="container">
 
 		<div class="relative">
+		
 			<div class="account">
 				@{if user}
 					<a href="@{sitemap_url('account')}" class="b">@{user.name}</a>
@@ -64,7 +83,9 @@
 						</div>
 						@{view('partials/categories')}
 					</div>
-					<button id="mainmenu"><i class="fa fa-chevron-down"></i></button>
+					<button class="boutonarticle" style="background-color:#ff7b13; color:white; opacity:.7;;" id="mainmenu">MENU</button>
+					<br>
+
 				</section>
 			</div>
 			<div class="col-md-9">

@@ -84,14 +84,13 @@ function file_read(req, res) {
 // Reads specific picture from database
 // URL: /images/small|large/*.jpg
 function file_image(req, res) {
-
+	
 	// Below method checks if the file exists (processed) in temporary directory
 	// More information in total.js documentation
 	F.exists(req, res, 10, function(next, filename) {
 
 		// Reads specific file by ID
 		NOSQL('files').binary.read(req.split[2].replace('.jpg', ''), function(err, stream) {
-
 			if (err) {
 				next();
 				return res.throw404();
@@ -106,6 +105,7 @@ function file_image(req, res) {
 
 				// Image processing
 				res.image(filename, function(image) {
+					console.log(image);
 					image.islimit = true;
 					image.output('jpg');
 					image.quality(90);

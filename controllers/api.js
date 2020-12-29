@@ -35,5 +35,5 @@ function file_newsletterviewstats(req, res) {
 
 function unsubscribe() {
 	var self = this;
-	self.$workflow('unsubscribe', () => self.plain(TRANSLATOR(self.language, '@(You have been successfully unsubscribed.\nThank you)')));
+	self.$workflow('unsubscribe', () => self.plain(TRANSLATOR(self.language, '@(Vous avez été désabonné avec succès.\nThank you)')));
 }
