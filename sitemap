@@ -8,13 +8,13 @@ notices           : @(Avis)             --> @(/avis/)              --> homepage
 admin             : @(Admin)               --> @(/admin/*)
 
 // Eshop
-checkout          : @(Validation)            --> @(/validation/)            --> homepage
+checkout          : @(Souission de la commande)            --> @(/soumission-de-la-commande/)            --> homepage
 category          : @(Tous les produits)        --> @(/categories/*)         --> homepage
 detail            : @(Details produit)      --> @(/detail/{0}/)          --> category
 top               : @(Produits TOP)        --> @(/top/)                 --> homepage
 new               : @(Nouveau produits)        --> @(/nouveau/)                 --> homepage
 popular           : @(Produits populaires)    --> @(/populaire/)             --> homepage
 account           : @(Mon Compte)          --> @(/Compte/)             --> homepage
-order             : @(Details commandes)        --> @(/validation/{0}/)        --> account
+order             : @(Details commandes)        --> @(/soumission-de-la-commande/{0}/)        --> account
 settings          : @(Paramètres de compte)    --> @(/compte/paramètres/)    --> account
 logoff            : @(Déconnexion)              --> @(/déconnexion/)              --> homepage

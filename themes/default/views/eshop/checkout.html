@@ -1,6 +1,6 @@
 @{repository.loading = true}
 
-<h1><i class="fa fa-shopping-cart"></i>@{title}</h1>
+<h1><i class="fa fa-shopping-cart"></i>Soumission de la commande</h1>
 
 <div class="hidden" data-b="shoppingcart.items" data-b-visible="!value || !value.length">
 	<br />
@@ -22,7 +22,6 @@
 						<div class="sum">..</div>
 						<div class="count"><input type="text" maxlength="2" /></div>
 						<div class="price">/ @(Prix unitaire =) <span>...</span></div>
-						<div class="stock">@(Disponible:) <b>...</b></div>
 					</div>
 				</div>
 			</script>
@@ -87,7 +86,7 @@
 				<div data-jc="dropdown" data-jc-path="order.form.payment" data-jc-config="icon:credit-card;required:true;datasource:order.dependencies.paymenttypes;empty:">@(Paiement)</div>
 				<div class="help">@(Choisir un type de paiement.)</div>
 			</div>
-			<!-- <div class="contentbody bg-yellow">
+		 <div class="contentbody bg-yellow">
 				<div class="caption"><i class="fa fa-address-card"></i>@(Addresse de livraison)</div>
 
 				<div class="row">
@@ -100,37 +99,37 @@
 				</div>
 				<div class="row">
 					<div class="col-md-6 m">
-						<div data-jc="textbox" data-jc-path="order.form.deliveryphone" data-jc-config="required:true;type:phone;placeholder:@(International format);maxlength:25">@(Phone number)</div>
-						<div class="help">@(Ce numéro c'est pour le courier.)</div>
+						<div data-jc="textbox" data-jc-path="order.form.deliveryphone" data-jc-config="required:true;type:phone;placeholder:@(Ex +22656545432);maxlength:25">@(Phone number)</div>
+						<!-- <div class="help">@(Ce numéro c'est pour le courier.)</div> -->
 					</div>
 					<div class="col-md-6" style="margin-top:10px">
 						<br class="hidden-xs" />
 						<a href="javascript:void(0)" class="copy exec" data-exec="ordercopypersonal"><i class="fa fa-copy"></i>@(Remplir la même chose que plus haut)</a>
 					</div>
 				</div>
+						<div class="row">
+							<div class="col-md-6 m">
+								<div data-jc="textbox" data-jc-path="order.form.deliverycity" data-jc-config="required:true;maxlength:50">@(Ville)</div>
+							</div>
+							<div class="col-md-3 m">
+								<div data-jc="textbox" data-jc-path="order.form.deliverystreet" data-jc-config="required:true;maxlength:50">@(Rue)</div>
+							</div>
+						</div>
 			</div>
-			<hr class="nmt nmb" style="border-color:#DDDC9F" />
-			<div class="contentbody bg-yellow">
+			<!-- <hr class="nmt nmb" style="border-color:#DDDC9F" /> -->
+			<!-- <div class="contentbody bg-yellow"> 
 				<div class="row">
 					<div class="col-md-6 m">
-						<div data-jc="textbox" data-jc-path="order.form.deliverystreet" data-jc-config="required:true;maxlength:50">@(Rue)</div>
-					</div>
-					<div class="col-md-3 m">
 						<div data-jc="textbox" data-jc-path="order.form.deliveryzip" data-jc-config="required:true;type:zip;align:center">@(ZIP)</div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-md-6 m">
-						<div data-jc="textbox" data-jc-path="order.form.deliverycity" data-jc-config="required:true;maxlength:50">@(Ville)</div>
 					</div>
 					<div class="col-md-6 m">
 						<div data-jc="textbox" data-jc-path="order.form.deliverycountry" data-jc-config="required:true;maxlength:50">@(Pays)</div>
 					</div>
 				</div>
 				<a href="javascript:void(0)" class="copy exec" data-exec="ordercopyaddress"><i class="fa fa-copy"></i>@(Copier l'adresse de livraison)</a>
-			</div> -->
+			</div>  -->
 			<div class="contentbody">
-				<div data-jc="textarea" data-jc-path="order.form.note" class="m">@(Note)</div>
+				<div data-jc="textarea" data-jc-path="order.form.note" class="m">Note (Suggestion ou précison)</div>
 				<div data-jc="checkbox" data-jc-path="order.form.isnewsletter" data-jc-value="true">@(Je veux être notifier a propos des promo et des nouveautés)</div>
 				<div data-jc="checkbox" data-jc-path="order.form.isterms" class="m b red">@(j'accepte les termes et les conditions)</div>
 				<div data-jc="error" data-jc-path="order.form.response"></div>
