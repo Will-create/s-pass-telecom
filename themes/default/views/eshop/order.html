@@ -77,6 +77,34 @@
 				@{fi}
 
 				@{if !model.isfinished && !model.ispaid}
+				<br>
+				<br>
+				<div class="b red">@(Payer par Orange Money ou Mobicash)</div>
+				<div class="content">
+						
+							<div class="CMS_widget CMS_remove" data-cms-id="m6wfxhk2gr" data-cms-widget="17111123390002yhd0">
+								
+									<div class="col-sm-12">
+										<img src="/img/paiements.png" alt="Moyens de paiement:mobicash et orange money" class="img-responsive CMS_edit" data-cms-width="670" data-cms-height="300" border="0">
+									</div>
+									
+									<div class="clearfix">
+									</div>
+							
+							</div>
+							
+						
+						<div class="contentbody">
+							<br>
+							<div data-jc="textbox" data-jc-path="payment.form.numero" data-jc-config="maxlength:30;required:true;type:phone;placeholder:@(ex:22676543432);" class="m">@(Numéro Orange Money ou Mobicash)</div>
+							<div data-jc="dropdown" data-jc-path="payment.form.payment" data-jc-config="icon:credit-card;required:true;items:Orange Money|orangemoney,Mobicash|mobicash;empty:">@(Paiement)</div>
+							<div class="help">@(Choisissez votre moyen de paiement.)</div>
+							<div data-jc="error" data-jc-path="payment.form.response"></div>
+							<div data-jc="validation" data-jc-path="payment.form" data-jc-config="flags:visible">
+								<button class="button b exec" data-exec="paymentsubmit" name="submit" disabled="disabled"><i class="fa fa-money"></i>@(Payer maintenant)</button>
+							</div>
+						</div>
+					</div>
 					<br />
 					<div><button class="button b exec" name="paypal" data-exec="pay"><i class="fa fa-paypal"></i>@(Payer maintenant)</button></div>
 					<div class="help">@(Vous allez être redirigé vers page <b>PayPal</b> de paiement sécurisé.)</div>
@@ -195,6 +223,11 @@
 	function pay(btn) {
 		SETTER('loading', 'show');
 		location.href = location.pathname + '?payment=' + btn.prop('name');
+	}
+	function paymentsubmit(){
+		SETTER('loading', 'show');
+		location.href = location.pathname + '?numero=' + payment.form.numero + '&payment='+ payment.form.payment;
+		console.log(payment);
 	}
 
 	// Highlight sizes and colors

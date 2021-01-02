@@ -391,7 +391,6 @@ F.onAuthorize = function(req, res, flags, callback) {
 		} else {
 			exports.logoff(res);
 			callback(false);
-		}
-
+		}yy
 	});
-};
+});
