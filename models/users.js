@@ -393,4 +393,4 @@ F.onAuthorize = function(req, res, flags, callback) {
 			callback(false);
 		}yy
 	});
-});
+};
