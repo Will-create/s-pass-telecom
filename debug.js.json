@@ -1,5 +1,5 @@
 {
-  "pid": 10223,
+  "pid": 22899,
   "stats": [
     {
       "id": null,
@@ -8,15 +8,15 @@
         "total": "3.4.5",
         "app": "9.0.0"
       },
-      "pid": 10223,
+      "pid": 22899,
       "thread": "",
       "mode": "debug",
-      "date": "2021-01-02T15:59:04.892Z",
-      "memory": 11.89,
-      "rm": 2.2,
-      "fm": 0,
+      "date": "2021-01-02T17:11:38.475Z",
+      "memory": 12.56,
+      "rm": 5,
+      "fm": 1.58,
       "usage": 0,
-      "requests": 86,
+      "requests": 60,
       "pending": 0,
       "errors": 0,
       "timeouts": 0
