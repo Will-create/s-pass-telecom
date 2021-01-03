@@ -9,4 +9,4 @@ var options = {};
 options.ip = 'auto';
 options.port = process.env.PORT;
 var framework = require('total.js');
-framework.http('release', options);
+framework.https('release', options);

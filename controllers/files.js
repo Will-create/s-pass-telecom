@@ -12,7 +12,7 @@ exports.install = function() {
 // For images (jpg, gif, png) supports percentual resizing according "?s=NUMBER" argument in query string e.g.: .jpg?s=50, .jpg?s=80 (for image galleries)
 // URL: /download/*.*
 function file_read(req, res) {
-
+   
 	var id = req.split[1].replace('.' + req.extension, '');
 
 	if (!req.query.s || (req.extension !== 'jpg' && req.extension !== 'gif' && req.extension !== 'png')) {
@@ -70,7 +70,7 @@ function file_read(req, res) {
 				res.image(filename, function(image) {
 					image.islimit = true;
 					image.output(req.extension);
-					req.extension === 'jpg' && image.quality(85);
+					req.extension === 'jpg' && image.quality(100);
 					size && image.resize(size + '%');
 					image.minify();
 				});
@@ -108,12 +108,13 @@ function file_image(req, res) {
 					
 					image.islimit = true;
 					image.output('jpg');
-					image.quality(90);
+					image.quality(100);
 
 					if (req.split[1] === 'large')
 						image.miniature(1024, 768);
 					else
 						image.miniature(200, 150);
+					
 
 					image.minify();
 				});

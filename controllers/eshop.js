@@ -249,7 +249,6 @@ function ligdicash_process(id) {
 	var self = this;
 	var redirect = F.global.config.url + self.url;
 	var ligdicash = require('ligdicash').create(F.global.config.paypaluser, F.global.config.paypalpassword, F.global.config.paypalsignature, redirect, redirect, F.global.config.paypaldebug);
-
 	self.id = id;
 
 	ligdicash.detail(self, function(err, data) {
