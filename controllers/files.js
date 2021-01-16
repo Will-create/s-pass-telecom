@@ -105,21 +105,16 @@ function file_image(req, res) {
 
 				// Image processing
 				res.image(filename, function(image) {
-					
 					image.islimit = true;
 					image.output('jpg');
 					image.quality(100);
-
 					if (req.split[1] === 'large')
 						image.miniature(1024, 768);
 					else
 						image.miniature(200, 150);
-					
-
 					image.minify();
 				});
 			});
-
 			stream.pipe(writer);
 		});
 	});

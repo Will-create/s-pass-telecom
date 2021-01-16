@@ -11,7 +11,6 @@ global.ADMIN.notify = function(value) {
 		WS.send(MSG_NOTIFY);
 	}
 };
-
 F.config['admin-tracking'] && ON('visitor', function(obj) {
 	if (WS) {
 		MSG_NOTIFY.type = 'visitor';
@@ -19,22 +18,16 @@ F.config['admin-tracking'] && ON('visitor', function(obj) {
 		WS.send(MSG_NOTIFY);
 	}
 });
-
 exports.install = function() {
-
 	// Routes are according to the sitemap
 	ROUTE('#admin', '=admin/index');
-
 	ROUTE('#admin/api/upload/',                   upload,        ['post', 'upload', 10000], 3084); // 3 MB
 	ROUTE('#admin/api/upload/base64/',            upload_base64, ['post', 10000], 2048); // 2 MB
-
 	ROUTE('#admin/api/dashboard/',                json_dashboard);
 	ROUTE('#admin/api/dashboard/referrers/',      json_dashboard_referrers);
 	ROUTE('#admin/api/dashboard/online/',         json_dashboard_online);
-
 	// Internal
 	ROUTE('#admin/api/dependencies/',             ['*Settings --> dependencies']);
-
 	// MODEL: /models/widgets.js
 	ROUTE('#admin/api/widgets/',                  ['*Widget --> query']);
 	ROUTE('#admin/api/widgets/{id}/',             ['*Widget --> read']);
@@ -44,11 +37,9 @@ exports.install = function() {
 	ROUTE('#admin/api/widgets/dependencies/',     ['*Widget --> dependencies']);
 	ROUTE('#admin/api/widgets/{id}/settings/',    json_widget_settings, ['*Widget']);
 	ROUTE('#admin/api/widgets/{id}/backups/',     json_backups);
-
 	// MODEL: /models/widgets.js
 	ROUTE('#admin/api/widgetsglobals/',           ['*WidgetGlobals --> read']);
 	ROUTE('#admin/api/widgetsglobals/',           ['*WidgetGlobals --> save', 'post'], 30);
-
 	// MODEL: /models/pages.js
 	ROUTE('#admin/api/pages/',                    ['*Page --> query']);
 	ROUTE('#admin/api/pages/{id}/',               ['*Page --> read']);
@@ -59,11 +50,9 @@ exports.install = function() {
 	ROUTE('#admin/api/pages/{id}/backups/',       json_backups);
 	ROUTE('#admin/api/pages/preview/',            view_pages_preview, ['json'], 512);
 	ROUTE('#admin/api/pages/links/',              json_pages_links);
-
 	// MODEL: /models/pages.js
 	ROUTE('#admin/api/pagesglobals/',             ['*PageGlobals --> read']);
 	ROUTE('#admin/api/pagesglobals/',             ['*PageGlobals --> save', 'post'], 30);
-
 	// MODEL: /models/posts.js
 	ROUTE('#admin/api/posts/',                    ['*Post --> query']);
 	ROUTE('#admin/api/posts/{id}/',               ['*Post --> read']);
@@ -73,7 +62,6 @@ exports.install = function() {
 	ROUTE('#admin/api/posts/stats/'     ,         ['*Post --> stats']);
 	ROUTE('#admin/api/posts/{id}/stats/',         ['*Post --> stats']);
 	ROUTE('#admin/api/posts/{id}/backups/',       json_backups);
-
 	// MODEL: /models/notices.js
 	ROUTE('#admin/api/notices/',                  ['*Notice --> query']);
 	ROUTE('#admin/api/notices/{id}/',             ['*Notice --> read']);
@@ -81,7 +69,6 @@ exports.install = function() {
 	ROUTE('#admin/api/notices/',                  ['*Notice --> remove', 'delete']);
 	ROUTE('#admin/api/notices/toggle/',           ['*Notice --> toggle']);
 	ROUTE('#admin/api/notices/preview/',          view_notices_preview, ['json']);
-
 	// MODEL: /models/subscribers.js
 	ROUTE('#admin/api/subscribers/',              ['*Subscriber --> query']);
 	ROUTE('#admin/api/subscribers/{id}/',         ['*Subscriber --> read']);
@@ -89,7 +76,6 @@ exports.install = function() {
 	ROUTE('#admin/api/subscribers/',              ['*Subscriber --> remove', 'delete']);
 	ROUTE('#admin/api/subscribers/stats/',        ['*Subscriber --> stats']);
 	ROUTE('#admin/api/subscribers/toggle/',       ['*Subscriber --> toggle']);
-
 	// MODEL: /models/newsletters.js
 	ROUTE('#admin/api/newsletters/',              ['*Newsletter --> query']);
 	ROUTE('#admin/api/newsletters/{id}/',         ['*Newsletter --> read']);
@@ -101,15 +87,12 @@ exports.install = function() {
 	ROUTE('#admin/api/newsletters/{id}/stats/',   ['*Newsletter --> stats']);
 	ROUTE('#admin/api/newsletters/{id}/backups/', json_backups);
 	ROUTE('#admin/api/newsletters/state/',        json_newsletter_state);
-
 	// MODEL: /models/navigations.js
 	ROUTE('#admin/api/nav/{id}/',                 ['*Navigation --> read']);
 	ROUTE('#admin/api/nav/',                      ['*Navigation --> save', 'post']);
-
 	// MODEL: /models/settings.js
 	ROUTE('#admin/api/settings/',                 ['*Settings --> read']);
 	ROUTE('#admin/api/settings/',                 ['*Settings --> save', 'post']);
-
 	// ESHOP
 	// MODEL: /models/products.js
 	ROUTE('#admin/api/products/',                 ['*Product --> query']);
@@ -125,7 +108,6 @@ exports.install = function() {
 	ROUTE('#admin/api/products/manufacturer/',    json_products_replace, ['*Product']);
 	ROUTE('#admin/api/products/import/',          json_products_import,  ['post']);
 	ROUTE('#admin/api/products/export/',          json_products_export,  ['*Product']);
-
 	// MODEL: /models/orders.js
 	ROUTE('#admin/api/orders/',                   ['*Order --> query']);
 	ROUTE('#admin/api/orders/{id}/',              ['*Order --> read']);
@@ -134,7 +116,6 @@ exports.install = function() {
 	ROUTE('#admin/api/orders/stats/',             ['*Order --> stats']);
 	ROUTE('#admin/api/orders/toggle/',            ['*Order --> toggle']);
 	ROUTE('#admin/api/orders/dependencies/',      ['*Order --> dependencies']);
-
 	// MODEL: /models/users.js
 	ROUTE('#admin/api/users/',                    ['*User --> query']);
 	ROUTE('#admin/api/users/{id}/',               ['*User --> read']);
@@ -142,26 +123,19 @@ exports.install = function() {
 	ROUTE('#admin/api/users/',                    ['*User --> remove', 'delete']);
 	ROUTE('#admin/api/users/stats/',              ['*User --> stats']);
 	ROUTE('#admin/api/users/{id}/stats/',         ['*User --> stats']);
-
 	// Files
 	ROUTE('#admin/api/files/',                    ['*File --> query']);
 	ROUTE('#admin/api/files/clear/',              ['*File --> clear']);
-
 	// Other
 	ROUTE('#admin/api/contactforms/stats/',       ['*Contact --> stats']);
-
 	// Websocket
 	WEBSOCKET('#admin/live/', socket, ['json']);
-
 	// Login
 	ROUTE('/api/login/admin/', login, ['post']);
 };
-
 function login() {
-
 	var self = this;
 	var key = (self.body.name + ':' + self.body.password).hash();
-
 	if (F.global.config.users[key]) {
 		OPERATION('admin.notify', { type: 'admin.login', message: self.body.name });
 		self.cookie(F.config['admin-cookie'], key, '1 month');

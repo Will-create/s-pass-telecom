@@ -73,7 +73,6 @@ NEWSCHEMA('Widget').make(function(schema) {
 			$.success();
 		});
 	});
-
 	// Removes a specific widget
 	schema.setRemove(function($) {
 		var user = $.user.name;
