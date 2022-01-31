@@ -235,7 +235,7 @@ NEWSCHEMA('UserPassword').make(function(schema) {
 			}
 
 			response.hash = F.encrypt({ id: response.id, expire: F.datetime.add('2 days').getTime() });
-			MAIL(model.email, '@(Password recovery)', '=?/mails/password', response, controller.language || '');
+			MAIL(model.email, '@(Recuperation de mot de passe)', '=?/mails/password', response, controller.language || '');
 			callback(SUCCESS(true));
 		});
 	});
@@ -317,7 +317,7 @@ NEWSCHEMA('UserCreate').make(function(schema) {
 			user.isblocked = false;
 			user.isconfirmed = false;
 
-			var mail = MAIL(model.email, '@(Registration)', '=?/mails/registration', user, $.language);
+			var mail = MAIL(model.email, '@(Creation de Compte)', '=?/mails/registration', user, $.language);
 			F.global.config.emailuserform && mail.bcc(F.global.config.emailuserform);
 
 			var nosql = NOSQL('users');
@@ -391,6 +391,6 @@ F.onAuthorize = function(req, res, flags, callback) {
 		} else {
 			exports.logoff(res);
 			callback(false);
-		}yy
+		}
 	});
 };

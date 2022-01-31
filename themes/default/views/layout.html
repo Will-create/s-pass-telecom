@@ -15,24 +15,21 @@
 </head>
 <body data-jc="exec,binder,modificator">
 	<style>
-		.bg-orange{background-color: #ff7b13; color:white;padding-top: 1em;}
+		.bg-orange{background-color: #056005; color:white;padding-top: 1em;}
 		.bg-red{background-color: red; color:white;padding-top: 1em;}
 		
 		@keyframes clignote {
-			0%{box-shadow:0px 0px 20px hsl(22, 92%, 57%);;}
-			50%{box-shadow:0px 0px 0px hsl(14, 96%, 55%);}
-			100%{box-shadow:0px 0px 20px  hsl(22, 92%, 57%);}
+			0%{box-shadow:0px 0px 20px #15b615;;}
+			50%{box-shadow:0px 0px 0px #11c711;}
+			100%{box-shadow:0px 0px 20px  #07eb07;}
 			}
 			.boutonarticle{
 				font-weight: bold;
 				text-shadow: 0 1px 0 white;
 				border-radius: 3px;
 				padding: 5px 10px;
+				padding-bottom: 3px;
 				border: 1px solid #DDD;
-				box-shadow:0px 0px 10px #4183C4;
-				animation-name: clignote; 
-				animation-duration: .8s;
-				animation-iteration-count:infinite;
 				}
 		
 	</style>
@@ -48,11 +45,11 @@
 		
 			<div class="account">
 				@{if user}
-					<a href="@{sitemap_url('account')}" class="b">@{user.name}</a>
-					<a href="@{sitemap_url('settings')}"><i class="fa fa-cog"></i>@(Paramètres)</a>
-					<a href="@{sitemap_url('logoff')}"><i class="fa fa-sign-out"></i>@(Déconnexion)</a>
+					<a style="text-decoration: none;  color : white;position:relative; top:10px" href="@{sitemap_url('account')}" class="b">@{user.name}</a>
+					<a style="text-decoration: none;  color : white;position:relative; top:10px" href="@{sitemap_url('settings')}"><i class="fa fa-cog"></i>@(Paramètres)</a>
+					<a style="text-decoration: none;  color : white;position:relative; top:10px" href="@{sitemap_url('logoff')}"><i class="fa fa-sign-out"></i>@(Déconnexion)</a>
 				@{else}
-					<a href="@{sitemap_url('account')}"><i class="fa fa-lock"></i>@(Connexion)</a>
+					<a style="text-decoration: none;  color : white;position:relative; top:10px" href="@{sitemap_url('account')}"><i class="fa fa-lock"></i>@(Connexion)</a>
 				@{fi}
 			</div>
 		</div>
@@ -60,11 +57,16 @@
 		<div class="row">
 			<div class="col-md-3">
 				<section class="categories">
-					<a href="/" class="logo"><img src="/img/logo.png" alt="@{'%name'}" border="0" /></a>
+					<a href="/" class="logo"><img src="/img/logo-agravi.jpg" alt="@{'%name'}" border="0" /></a>
 					<div class="categoriescontainer">
-						<div class="categoriesbody bg-yellow fs12 ui-center m">
-							<b>S.PASS Telecom e-shop</b>. 
+						<div class="categoriesbody bg-orange fs12 ui-center m">
+							<b>AGRAVI Shop</b> 
 						</div>
+						<div class="categoriesbody npb">
+							<div class="caption">@(Catégories)</div>
+						</div>
+						@{view('partials/categories')}
+
 
 						<div class="categoriesbody npb">
 							<div class="caption">@(RECOMMANDÉS)</div>
@@ -78,35 +80,33 @@
 							<a href="@{sitemap_url('popular')}"><i class="fa fa-caret-right"></i>@(Populaire)<span>@(Nouveau)</span></a>
 							<a href="@{sitemap_url('category')}"><i class="fa fa-caret-right"></i>@(Tous les produits)</a>
 						</nav>
-						<div class="categoriesbody npb">
-							<div class="caption">@(Catégories)</div>
-						</div>
-						@{view('partials/categories')}
 					</div>
-					<button class="boutonarticle" style="background-color:#ff7b13; color:white; opacity:.7;;" id="mainmenu">MENU</button>
+					<button class="boutonarticle" style="background-color:#11c711; color:white; opacity:.7;" id="mainmenu">MENU</button>
 					<br>
-
 				</section>
 			</div>
 			<div class="col-md-9">
 				<section class="body">
 
 					<header>
-						<nav>
+						<nav class="customNav" >
 							@{foreach m in F.global.navigations.menu.children}
 								<a href="@{m.url}">@{if m.icon}<i class="fa fa-@{m.icon}"></i>@{fi}@{m.name}</a>
 							@{end}
+						</nav>
+						<nav style="background-color: #2D2D2D!important;height:1px!important;margin-bottom:10px;" class="customNav2" >
+							
 						</nav>
 						<div class="shoppingcart" data-m="shoppingcart.sum + shoppingcart">
 							<a href="@{sitemap_url('checkout')}"><b data-b="shoppingcart.sum" data-b-html="'@{global.config.currency_entity}'.format(value ? value.format(2) : (0).format(2))">...</b><span>@(Votre panier)</span></a>
 						</div>
 						<form class="search" action="@{sitemap_url('category')}" method="get">
 							<button><i class="fa fa-search"></i></button>
-							<div><input type="text" placeholder="@(Rechercher des produits ...)" name="q" value="@{query.q}" id="search" autocomplete="off" /></div>
+							<div><input type="text" placeholder="@(Rechercher...)" name="q" value="@{query.q}" id="search" autocomplete="off" /></div>
 						</form>
 					</header>
 
-					<nav class="breadcrumb">
+					<nav class="breadcrumb mt2">
 						@{foreach m in sitemap()}
 							@{if m.id === 'category'}
 								<i class="fa fa-caret-right"></i><a href="@{m.url}">@{m.name}</a>

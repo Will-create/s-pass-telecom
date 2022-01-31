@@ -1,6 +1,6 @@
-name                      : S-pass Boutique Yako
-version                   : 9.0.0
-author                    : Louis Bertson
+name                      : AGRAVI BURKINA
+version                   : 1.0.0
+author                    : Juldo Devs
 
 // Hidden super admin in the form username:password
 admin-superadmin          : spass:spass123456

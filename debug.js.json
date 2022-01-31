@@ -1,24 +1,24 @@
 {
-  "pid": 56034,
+  "pid": 512,
   "stats": [
     {
       "id": null,
       "version": {
-        "node": "v10.21.0",
+        "node": "v12.5.0",
         "total": "3.4.5",
-        "app": "9.0.0"
+        "app": "1.0.0"
       },
-      "pid": 56034,
+      "pid": 512,
       "thread": "",
       "mode": "debug",
-      "date": "2021-01-16T18:29:10.103Z",
-      "memory": 15.32,
-      "rm": 12.01,
-      "fm": 6.75,
-      "usage": 0,
-      "requests": 637,
+      "date": "2022-01-31T18:13:31.709Z",
+      "memory": 9.28,
+      "rm": 6,
+      "fm": 4.5,
+      "usage": 22,
+      "requests": 24,
       "pending": 0,
-      "errors": 1,
+      "errors": 0,
       "timeouts": 0
     }
   ]
